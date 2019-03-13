@@ -8,16 +8,25 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.lucasfrota.telegramwebservice.Adapters.ChatAdapter
+import com.lucasfrota.telegramwebservice.Model.ChatItem
 import com.lucasfrota.telegramwebservice.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    val itens = ArrayList<ChatItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -34,6 +43,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
+        itens.add(ChatItem("Discussão sobre ETs", "Os ETs existem", "23:53"))
+        itens.add(ChatItem("fã clube do ET bilu", "A terra é convexa", "16:23"))
+
+        val adapter = ChatAdapter(itens)
+        recyclerView.adapter = adapter
     }
 
     override fun onBackPressed() {

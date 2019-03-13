@@ -18,7 +18,7 @@ class ChatAdapter(private val itens: List<ChatItem>): RecyclerView.Adapter<ChatH
     }
 
     override fun onBindViewHolder(holder: ChatHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
 }

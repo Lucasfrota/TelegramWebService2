@@ -18,7 +18,8 @@ class ChatAdapter(private val itens: List<ChatItem>): RecyclerView.Adapter<ChatH
     }
 
     override fun onBindViewHolder(holder: ChatHolder, position: Int) {
-
+        val item = itens[position]
+        holder.setUpItem(item)
     }
 
 }
